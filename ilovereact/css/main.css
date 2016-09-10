@@ -1,0 +1,72 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.red {
+  /* 指定该元素为 `flex-start`  */
+  align-self: flex-start;
+}
+
+body {
+  background-color: #1F1E34;
+  color: #FFF;
+  font-family: "Avenir Next",
+      "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica,
+      Arial, "Lucida Grande", sans-serif;
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 100;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: 100;
+}
+
+p {
+  font-size: 24px;
+}
+
+a {
+  font-weight: 400;
+  color: #FFF;
+}
+
+a:hover {
+  font-weight: 400;
+  color: #DADADA;
+  text-decoration: none;
+}
+
+.section {
+  background-color: rgba(255,0,0,0.3);
+  border: 2px solid #FFF;
+  height: 100vh;
+  width: 100%;
+}
+
+.section1 {
+  background-color: #1F1E34
+}
+
+.react-logo {
+  margin: 200px 0 0 0;
+}
+
+.section1 h1 {
+  text-align: center;
+}
+

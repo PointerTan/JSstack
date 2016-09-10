@@ -1,0 +1,330 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-image: url(../img/bg5.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+body {
+  font-family: 'Open Sans','helvetica',arial,sans-serif;
+  font-weight: 300;
+  color: #62686f;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+  /*font-weight: 300;*/
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.main-header {
+	margin-top: 100px;
+  padding: 1px;
+  text-align: center;
+
+  background-image: url(../img/banner.jpg);
+  font-weight: 300;
+  font-size: 30px;
+  font-family: 'Open Sans','helvetica',arial,sans-serif;
+}
+
+.main-header h1 {
+    color: rgba(255,255,255,0.4);
+}
+
+.main-header__avatar {
+  display: block;
+  margin: 0 auto;
+  margin-top: -70px;
+  width: auto;
+
+  box-shadow: 0px 0px 2px 3px rgba(255,255,255,0.8);
+  border-radius: 999px;
+}
+
+.main-nav ul li {
+  display: inline-block;
+  margin: 0px 10px;
+}
+
+.main-nav ul {
+  text-align: center;
+}
+
+.main-nav {
+  background-color: #333;
+  padding: 1px; 
+  height: auto;
+}
+
+.main-nav ul li a {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.main-nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.info-section {
+  padding: 30px 60px;
+  background-color: #fff;
+}
+
+.info-section header{
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.info-section header h2 {
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.info-section__description {
+  font-style: italic;
+  font-weight: 400; 
+}
+
+.whatido__skill-list {
+  list-style: none outside none;
+  padding: 0px;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+.whatido__skill--code {
+  background-image: url(../img/skill-code.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+
+  float: left;
+  width: 33%;
+  padding-top: 100px; 
+  text-align: center;
+}
+
+.whatido__skill--design {
+  background-image: url(../img/skill-design.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+
+  float: left;
+  width: 33%;
+  padding-top: 100px; 
+  text-align: center;
+
+}
+
+.whatido__skill--product {
+  background-image: url(../img/skill-product.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+
+  float: left;
+  width: 33%;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.info-section header h2:after {
+  content:"";
+  display:block;
+  clear:both;
+  margin: 0 auto;
+  border-bottom: 3px solid black;
+  width: 100px;
+}
+
+.education-experience__list {
+  list-style: none outside none;
+  padding: 0px;
+  margin-top: 60px;
+}
+
+.education-experience__list img {
+  float: left;
+  width: 180px;
+  margin-top: 24px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+}
+
+.education-experience__list li {
+  overflow: hidden;
+  display: block;
+  margin: 0 80px;
+  padding: 1px;
+}
+
+.education-experience__list__description {
+  overflow: hidden;
+}
+
+
+.photos__list {
+  overflow: hidden;
+  list-style: none outside none;
+  padding: 0px;
+  margin-top: 60px;
+}
+
+.photos__list img{
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+
+.get-in-touch__list {
+  overflow: hidden;
+  list-style: none outside none;
+  padding: 0px;
+  margin-top: 60px;
+}
+
+.get-in-touch__list li {
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+
+.container input, 
+.container textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.container button {
+  border: none;
+  border-radius: 9999px;
+
+  background: #ffd524;
+
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  color: #fff;
+  box-shadow: 0 3px 0 #daae1d;
+}
+
+.contact form div {
+  position: relative;
+}
+
+.contact form{
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 200px;
+}
+
+.contact form div input,
+.contact form div textarea,
+.contact form button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.contact form label {
+  position: absolute;
+  top: 0;
+  left: -110px;
+  width: 100px;
+  text-align: right;
+}
+
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .main-header {
+    font-size: 20px;
+  }
+
+  .main-nav ul {
+    padding: 1px;
+  }
+
+  .main-nav ul li {
+    display: block;
+    margin: 10px auto;
+  }
+
+  .info-section {
+    padding: 10px;
+    background-color: #fff;
+  }
+
+  .whatido__skill-list *{
+    width: 100%;
+  }
+
+  .whatido__skill-list * p{
+    margin: 0px auto 80px auto;
+    width: 80%;
+    float: none;
+  }
+
+  .education-experience__list {
+    list-style: none outside none;
+  }
+
+  .education-experience__list img {
+    display: block;
+    float: none;
+    width: 180px;
+    margin: 0 auto;
+  }
+
+  .education-experience__list li {
+    display: block;
+    margin: 0 60px 60px 60px;
+    padding: 1px;
+  }
+
+  .education-experience header h2 span {
+    display: block;
+  }
+
+  .photos__list img{
+    float: left;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .get-in-touch__list li {
+    float: left;
+    width: 50%;
+    text-align: center;
+  }
+
+  .contact form{
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 200px;
+  }
+  
+  .contact form label {
+    position: static;
+  }
+}
