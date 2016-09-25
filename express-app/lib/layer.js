@@ -18,7 +18,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Layer(path, handle) {
     var layerThis = this;
     this.name = [];
+    this.name1 = [];
     this.re = (0, _pathToRegexp2.default)(path, this.name, { end: false });
+    this.re1 = (0, _pathToRegexp2.default)(path + "/:a", this.name1, { end: false });
     this.path = path;
     this.handle = handle;
     this.match = function (matchPath) {
@@ -41,6 +43,14 @@ function Layer(path, handle) {
                 params[layerThis.name[i].name] = matchArr[i + 1];
             }
             matchObject.params = params;
+
+            if (this.handle && this.handle.hasFather) {
+                matchObject.url = subPath.slice(this.path.length, subPath.length);
+                // console.log("a" + matchObject.url);
+            } else {
+                matchObject.url = subPath;
+                // console.log(subPath);
+            }
 
             // console.log(layerThis.name);
             // console.log(matchArr);

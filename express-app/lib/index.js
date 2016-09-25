@@ -14,6 +14,7 @@ exports.default = function () {
 
     app.handle = function () {};
 
+    app.originUrl = "";
     app.hasFather = false;
     app.isApp = true;
 
@@ -23,6 +24,7 @@ exports.default = function () {
         if (app.nextIndex === app.stack.length) {
             if (app.hasFather) {
                 console.log("hasFather and end");
+                app.req.url = app.req.originUrl;
                 app.father.next(error);
                 return;
             }
@@ -55,21 +57,25 @@ exports.default = function () {
             } while (app.nextIndex < app.stack.length);
 
             var matchObj = useMethod.match(app.req.url);
+            var req = app.req;
             if (matchObj) {
                 app.req.params = matchObj.params;
+                app.req.originUrl = req.url;
+                req.url = matchObj.url;
             } else {
+                // console.log(app.req.url)
                 app.req.params = {};
             }
 
             if (hasError) {
                 if (useMethod && matchObj) {
-                    useMethod.handle(error, app.req, app.res, app.next);
+                    useMethod.handle(error, req, app.res, app.next);
                 } else {
                     app.next(error);
                 }
             } else {
                 if (useMethod && matchObj) {
-                    useMethod.handle(app.req, app.res, app.next);
+                    useMethod.handle(req, app.res, app.next);
                 } else {
                     app.next();
                 }
@@ -97,14 +103,12 @@ exports.default = function () {
             func = useFunc;
         }
 
-        var _require = require("../lib/layer");
+        var layer = new _layer.Layer(path, func);
 
-        var Layer = _require.Layer;
-
-        var layer = new Layer(path, func);
-
-        layer.hasFather = true;
-        layer.father = app;
+        if (layer.handle && layer.handle.isApp) {
+            layer.handle.hasFather = true;
+            layer.handle.father = app;
+        }
         app.stack.push(layer);
     };
 
@@ -114,6 +118,8 @@ exports.default = function () {
 var _http = require("http");
 
 var _http2 = _interopRequireDefault(_http);
+
+var _layer = require("../lib/layer");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=index.js.map

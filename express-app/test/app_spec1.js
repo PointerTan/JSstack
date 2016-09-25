@@ -214,24 +214,24 @@ describe("The middlewares called should match request path:", function () {
       request(app).get("/foo/bar").expect("embedded app: /bar").end(done);
     });
 
-    // it("restore trimmed request path to original when going to the next middleware", function (done) {
-    //   request(app).get("/foo").expect("handler: /foo").end(done);
-    // });
+    it("restore trimmed request path to original when going to the next middleware", function (done) {
+      request(app).get("/foo").expect("handler: /foo").end(done);
+    });
 
-    // describe("ensures leading slash", function () {
-    //   beforeEach(function () {
-    //     barapp = express();
-    //     barapp.use("/", function (req, res) {
-    //       res.end("/bar");
-    //     });
-    //     app.use("/bar", barapp);
-    //   });
+    describe("ensures leading slash", function () {
+      beforeEach(function () {
+        barapp = express();
+        barapp.use("/", function (req, res) {
+          res.end("/bar");
+        });
+        app.use("/bar", barapp);
+      });
 
-    //   it("ensures that first char is / for trimmed path", function (done) {
-    //     // request(app).get("/bar").expect("/bar").end(done);
-    //     request(app).get("/bar/").expect("/bar").end(done);
-    //   });
-    // });
+      it("ensures that first char is / for trimmed path", function (done) {
+        // request(app).get("/bar").expect("/bar").end(done);
+        request(app).get("/bar/").expect("/bar").end(done);
+      });
+    });
   });
 
 });

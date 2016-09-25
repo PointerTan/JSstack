@@ -1,4 +1,5 @@
 import http from "http";
+import { Layer } from "../lib/layer";
 
 export default function () {
     const app = function (req, res) {
@@ -9,9 +10,10 @@ export default function () {
     }
 
     app.handle = function () {
-        
+
     }
 
+    app.originUrl = "";
     app.hasFather = false;
     app.isApp = true;
 
@@ -21,6 +23,7 @@ export default function () {
         if (app.nextIndex === app.stack.length) {
             if (app.hasFather) {
                 console.log("hasFather and end");
+                app.req.url = app.req.originUrl;
                 app.father.next(error);
                 return;
             }
@@ -52,17 +55,21 @@ export default function () {
                 }
             } while (app.nextIndex < app.stack.length);
 
-            let matchObj = useMethod.match(app.req.url)
+            let matchObj = useMethod.match(app.req.url);
+            let req = app.req;
             if (matchObj) {
                 app.req.params = matchObj.params;
+                app.req.originUrl = req.url;
+                req.url = matchObj.url;
             }
             else {
+                // console.log(app.req.url)
                 app.req.params = {};
             }
 
             if (hasError) {
                 if (useMethod && matchObj) {
-                    useMethod.handle(error, app.req, app.res, app.next);
+                    useMethod.handle(error, req, app.res, app.next);
                 }
                 else {
                     app.next(error);
@@ -70,7 +77,7 @@ export default function () {
             }
             else {
                 if (useMethod && matchObj) {
-                    useMethod.handle(app.req, app.res, app.next);
+                    useMethod.handle(req, app.res, app.next);
                 }
                 else {
                     app.next();
@@ -99,11 +106,12 @@ export default function () {
             func = useFunc;
         }
 
-        var { Layer } = require("../lib/layer");
         let layer = new Layer(path, func);
 
-        layer.hasFather = true;
-        layer.father = app;
+        if (layer.handle && layer.handle.isApp) {
+            layer.handle.hasFather = true;
+            layer.handle.father = app;
+        }
         app.stack.push(layer);
     }
 
