@@ -52,9 +52,12 @@ a:hover {
 }
 
 .section {
+  align-items: center;
+  justify-content: center;
   background-color: rgba(255,0,0,0.3);
   border: 2px solid #FFF;
   height: 100vh;
+  min-height: 500px;
   width: 100%;
 }
 
@@ -62,11 +65,36 @@ a:hover {
   background-color: #1F1E34
 }
 
-.react-logo {
-  margin: 200px 0 0 0;
-}
-
 .section1 h1 {
   text-align: center;
+  width: 100%;
 }
 
+.nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav a {
+  margin: auto 5px;
+}
+
+.section2 {
+  flex-direction: row;
+}
+
+.iphone-demo {
+  flex-basis: 0; 
+  flex-grow: 1;
+  align-self: stretch;
+  background-color: rgba(255,0,0,0.3);
+}
+
+.feature-description {
+  flex-basis: 0;
+  flex-grow: 1;
+  align-self: stretch;
+  background-color: rgba(0,255,0,0.3);
+}
