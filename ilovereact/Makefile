@@ -5,7 +5,7 @@ css:
 
 .PHONY: server
 server:
-	browser-sync start --server --files='index.html,bundle/app.css,css/main.css'
+	browser-sync start --server --files='index.html,bundle/app.css,css/main.css,js/app.js'
 
 
 .PHONY: clean
