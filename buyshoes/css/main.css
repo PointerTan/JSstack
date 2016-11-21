@@ -7,9 +7,57 @@
 .site__main {
     width: 70%;
     background-color: blue;
+    flex-direction: row;
+    padding-left: 170px;
+}
+
+.site__left-sidebar {
+    position: fixed;
+    flex-basis: auto;
+    flex-grow: 0;
+    background-color: green;
+    width: 170px;
+    margin-left: -170px;
+}
+
+.site__content {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-direction: row;
+    background-color: yellow;
+}
+
+.products {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: 50%;
+    height: 250px;
 }
 
 .site__right-sidebar {
     width: 30%;
     background-color: red;
+}
+
+.cart {
+    flex-basis: 0;
+    flex-grow: 1;
+    background-color: greenyellow;
+    overflow: auto;
+}
+
+.cart-item {
+    height: 150px;
+    margin-bottom: 20px;
+    background: rgba(0, 255, 0, 0.3)
+}
+
+.checkout {
+    flex-basis: auto;
+    flex-grow: 0;
+    background-color: orange;
 }
