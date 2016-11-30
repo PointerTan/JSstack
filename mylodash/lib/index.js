@@ -13,18 +13,16 @@ var _ = {
 };
 
 function once(functionA) {
-  var i = 1;
-
-  var functionB = function functionB() {
-    if (i === 1) {
-      i = 0;
-      return functionA();
-    } else {
-      return 1;
-    }
-  };
-
-  return functionB;
+  return function () {
+    var i = null;
+    return function () {
+      if (!i) {
+        i = functionA.apply(this, arguments);
+        console.log(i);
+      }
+      return i;
+    };
+  }();
 }
 
 function memoize(functionA) {

@@ -5,29 +5,39 @@ const _ = {
 };
 
 export function once(functionA) {
-  var i = 1;
-
-  var functionB = function() {
-    if (i === 1) {
-      i = 0;
-      return functionA(); 
+  return (function () {
+    let i = null;
+    return function () {
+      if (!i) {
+        i = functionA.apply(this, arguments);
+      }
+      return i;
     }
-    else {
-      return 1; 
-    }
-  }
-
-  return functionB;
+  })()
 }
+
+export function timespend(functionA, count) {
+  return function () {
+    timeA
+    let result = functionA.apply(this, arguments);
+    for (i = 1; i < count; i++) {
+      functionA.apply(this, arguments);
+    }
+    timeB
+    console.log((timeB-timeA)/count);
+    return result;
+  }
+}
+
 
 
 export function memoize(functionA) {
   var tempNubs = Object();
-  var functionB = function(nub) {
+  var functionB = function (nub) {
     if (Array.isArray(nub)) {
       var key = nub[0];
       if (tempNubs.key === undefined) {
-        tempNubs.key = functionA(nub[1]);  
+        tempNubs.key = functionA(nub[1]);
       }
 
       return [key, tempNubs.key];
@@ -35,7 +45,7 @@ export function memoize(functionA) {
 
     if (!isNaN(nub)) {
       if (tempNubs.nub === undefined) {
-        tempNubs.nub = functionA(nub);  
+        tempNubs.nub = functionA(nub);
       }
 
       return tempNubs.nub;
@@ -47,7 +57,7 @@ export function memoize(functionA) {
 
 
 export function bind(functionA, context, a1, a2) {
-  var functionB = function() {
+  var functionB = function () {
     var result = functionA.call(context);
     if (a1 !== undefined && a2 !== undefined) {
       var args = [].slice.call(arguments, 0);
@@ -61,7 +71,7 @@ export function bind(functionA, context, a1, a2) {
       return result;
     }
     else {
-      return result; 
+      return result;
     }
   }
 
