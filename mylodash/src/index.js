@@ -5,7 +5,7 @@ const _ = {
 };
 
 export function once(functionA) {
-  return (function () {
+  // return (function () {
     let i = null;
     return function () {
       if (!i) {
@@ -13,7 +13,7 @@ export function once(functionA) {
       }
       return i;
     }
-  })()
+  // })()
 }
 
 export function timespend(functionA, count) {
