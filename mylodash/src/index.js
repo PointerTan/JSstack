@@ -4,29 +4,68 @@ const _ = {
   // ...
 };
 
+
+const Y = (f) => 
+{
+  let a = (x => {
+    console.log(" " + x)
+    let b = f(v => x(x)(v))
+    return b
+  })
+  return a(x => f(v => x(x)(v)))
+}
+
+
+const factorial = Y(function (fac) {
+  return function (n) {
+    return (n == 0 ? 1 : n * fac(n - 1));
+  }
+});
+
+console.log(factorial(5))
+
 export function once(functionA) {
-  // return (function () {
-    let i = null;
-    return function () {
-      if (!i) {
-        i = functionA.apply(this, arguments);
-      }
-      return i;
-    }
-  // })()
+  let run = false, result;
+  return function () {
+    result = run ? result : ((run = ture), result = functionA.apply(this, arguments))
+    return result;
+  }
 }
 
 export function timespend(functionA, count) {
   return function () {
-    timeA
+    var timeBefore = (new Date()).getTime();
     let result = functionA.apply(this, arguments);
-    for (i = 1; i < count; i++) {
+    for (let i = 1; i < count; i++) {
       functionA.apply(this, arguments);
     }
-    timeB
-    console.log((timeB-timeA)/count);
+    var timeAfter = (new Date()).getTime();
+    console.log(`alltime: ${timeAfter - timeBefore}`);
+    console.log((timeAfter - timeBefore) / count);
     return result;
   }
+}
+
+export function flatten(arrayA) {
+
+  let result = []
+  let flat = function (array) {
+    if (array[0]) {
+      Array.isArray(array[0]) ? (flat(array[0]), flat(array.pop())) : a
+    }
+    array[0]
+    // array.map(element => {Array.isArray(element) ? flat(element): result.push(element) })
+    array.map((element) => {
+      if (Array.isArray(element)) {
+        flat(element)
+      }
+      else {
+        result.push(element)
+      }
+    })
+  }
+  flat(arrayA)
+  return result
 }
 
 
@@ -54,6 +93,23 @@ export function memoize(functionA) {
 
   return functionB;
 }
+
+const callRight = (fn, ...args) =>
+  (...remainingArgs) =>
+    fn(...remainingArgs, ...args);
+
+const foldTreeWith = (fn, terminalValue, [first, ...rest]) =>
+  first === undefined
+    ? terminalValue
+    : Array.isArray(first)
+      ? fn(foldTreeWith(fn, terminalValue, first), foldTreeWith(fn, terminalValue, rest))
+      : fn(first, foldTreeWith(fn, terminalValue, rest));
+
+const foldTree = (tree) => callRight(foldTreeWith, tree);
+
+const sumFoldable = (folder) => folder((a, b) => a + b, 0);
+
+sumFoldable(foldTree([1, [4, [9, 16]], 25]))
 
 
 export function bind(functionA, context, a1, a2) {
